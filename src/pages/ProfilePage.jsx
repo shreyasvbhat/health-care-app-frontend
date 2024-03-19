@@ -7,6 +7,7 @@ const ProfilePage = () => {
         <div>
             <NavBar />
             <ProfileDetails />
+            {/* Working on it... */}
         </div>
     )
 }
