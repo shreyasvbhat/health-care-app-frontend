@@ -7,6 +7,7 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute.jsx";
 import AboutPage from "./pages/about.jsx";
 import Navbar from "./components/navbar-new.jsx";
 import LocationAccess from "./pages/LocationAccess.jsx";
+import AptSuccess from "./pages/AptSuccess.jsx";
 import WorkDetailsPage from "./pages/work-details.jsx";
 import NotFound from "./pages/not-found.jsx";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/location" element={<LocationAccess />} />
+        <Route path="/aptSuccess" element={<AptSuccess/>} />
       </Route>
 
       {/* Authentication routes */}
