@@ -7,13 +7,9 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute.jsx";
 import AboutPage from "./pages/about.jsx";
 import Navbar from "./components/navbar-new.jsx";
 import LocationAccess from "./pages/LocationAccess.jsx";
-<<<<<<< HEAD
-import LandingPage from "./pages/LandingPage.jsx";
 import AptSuccess from "./pages/AptSuccess.jsx";
-=======
 import WorkDetailsPage from "./pages/work-details.jsx";
 import NotFound from "./pages/not-found.jsx";
->>>>>>> ecbe25ed3661c31a3588ed9edd84bc0615d49d8f
 
 function App() {
   return (
@@ -21,18 +17,9 @@ function App() {
       {/* Public Routes */}
       <Route path="/" element={<Navbar />}>
         <Route path="/" element={<Home />} />
-<<<<<<< HEAD
-        <Route path='/landingPage' element={<LandingPage/>} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/profile" element={<ProfilePage/>} />
-        <Route path="/location" element={<LocationAccess />} />
-        <Route path="/aptSuccess" element={<AptSuccess aptTime={"11:45 AM"}/>} />
-      </Routes>
-    </BrowserRouter>
-=======
         <Route path="/about" element={<AboutPage />} />
         <Route path="/location" element={<LocationAccess />} />
+        <Route path="/aptSuccess" element={<AptSuccess/>} />
       </Route>
 
       {/* Authentication routes */}
@@ -48,7 +35,6 @@ function App() {
       {/* Not Found Route */}
       <Route path="*" element={<NotFound />} />
     </Routes>
->>>>>>> ecbe25ed3661c31a3588ed9edd84bc0615d49d8f
   );
 }
 
