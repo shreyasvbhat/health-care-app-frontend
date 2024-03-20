@@ -24,19 +24,4 @@ const LocationAccess = () => {
   );
 };
 
-<<<<<<< HEAD
-            <div className='flex flex-col justify-center items-center gap-4'>
-                <img className='mt-20 shadow-2xl rounded-[50%]' width={300} src="./location.svg" alt="location-access" />
-                <h2 className='font-bold text-3xl'>Location</h2>
-                <p className='font-[400] text-[.9rem] text-center'>Your location services are switched off. Please enable location to help us serve better.</p>
-                <button className='bg-blue-700 text-white py-2 px-7 rounded-md hover:bg-blue-800 transition-all font-semibold shadow-md'>Allow Location Access</button>
-                <button className='text-blue-600 hover:text-blue-800 hover:bg-gray-300 border-[1px] bg-gray-200 border-gray-400 font-semibold py-2 px-7 rounded-md shadow-md transition-all'>Enter location manually</button>
-            </div>
-        </div>
-    )
-}
-
-export default LocationAccess
-=======
 export default LocationAccess;
->>>>>>> 0dbb93c426eeb7a8ff22c9a8e4eae633a0504233
