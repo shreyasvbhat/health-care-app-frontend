@@ -20,6 +20,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/location" element={<LocationAccess />} />
         <Route path="/aptSuccess" element={<AptSuccess/>} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
 
       {/* Authentication routes */}
@@ -28,7 +29,6 @@ function App() {
 
       {/* Protected Routes */}
       <Route element={<AuthenticatedRoute />}>
-        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/workdetails/:doctorId" element={<WorkDetailsPage />} />
       </Route>
 

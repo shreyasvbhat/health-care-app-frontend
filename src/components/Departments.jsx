@@ -6,7 +6,7 @@ const Departments = () => {
     let imgSrcs = [];
 
     return (
-        <div className='bg-gradient-to-r from-sky-400 to-violet-600 py-4 rounded-lg m-4 flex flex-col justify-center gap-5'>
+        <div className='bg-gradient-to-tl from-[#365486] to-[#7FC7D9] py-4 rounded-lg m-4 flex flex-col justify-center gap-5'>
             <h2 className='text-center font-bold text-3xl text-white'>Select Departments</h2>
             <div className='flex justify-around text-center'>
                 {deptNames.map(deptName => <DeptCard deptName={deptName} />)}

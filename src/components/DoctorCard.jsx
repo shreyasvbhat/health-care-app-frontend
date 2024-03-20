@@ -2,7 +2,7 @@ import React from 'react'
 
 const DoctorCard = ({ info }) => {
     return (
-        <div className='flex flex-col items-center w-[310px] border-[1.3px] bg-gray-200 rounded-lg py-4 px-7 gap-2'>
+        <div className='flex flex-col items-center w-[310px] border-[1.3px] bg-gray-200 rounded-lg py-4 px-7 gap-2 shadow-md'>
             <img className='h-[150px] w-[220px] border-[1px] border-black rounded-2xl bg-blue-200' src={info.imgSrc} alt="doctor-profile" />
             <div className='flex items-center gap-4 justify-center'>
                 <div>

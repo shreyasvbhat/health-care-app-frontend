@@ -3,8 +3,10 @@ import DoctorCard from './DoctorCard'
 
 const DoctorsList = ({ doctorsInfo }) => {
     return (
-        <div className='grid grid-cols-3 gap-4 justify-center'>
-            {doctorsInfo.map(info => <DoctorCard info={info} />)}
+        <div>
+            <div className='grid grid-cols-3 gap-4 justify-items-center py-5'>
+                {doctorsInfo.map(info => <DoctorCard info={info} />)}
+            </div>
         </div>
     )
 }
