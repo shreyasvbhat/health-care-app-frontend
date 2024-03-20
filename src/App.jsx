@@ -7,9 +7,10 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute.jsx";
 import AboutPage from "./pages/about.jsx";
 import Navbar from "./components/navbar-new.jsx";
 import LocationAccess from "./pages/LocationAccess.jsx";
-import AptSuccess from "./pages/AptSuccess.jsx";
 import WorkDetailsPage from "./pages/work-details.jsx";
 import NotFound from "./pages/not-found.jsx";
+import D_dash_patientList from "./pages/D_dash_patientList.jsx";
+import AptSucccess from "./pages/AptSuccess.jsx"
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/location" element={<LocationAccess />} />
-        <Route path="/aptSuccess" element={<AptSuccess/>} />
+        <Route path="/D_dash_patient" element={<D_dash_patientList/>} />
+        <Route path="/aptSuccess" element={<AptSucccess />} />
       </Route>
 
       {/* Authentication routes */}
