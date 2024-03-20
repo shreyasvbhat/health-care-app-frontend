@@ -1,11 +1,12 @@
-import React from 'react'
-import NavBar from '../components/NavBar'
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
     <div>
-      <NavBar />
-      <h1 className='text-red-500'>Axios and React Router has been installed....</h1>
+      <h1 className="text-red-500">
+        Axios and React Router has been installed....
+      </h1>
+      <Link to="/profile">profile</Link>
     </div>
   );
 }
