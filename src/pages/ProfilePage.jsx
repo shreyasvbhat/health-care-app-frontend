@@ -1,15 +1,14 @@
-import React from 'react'
-import NavBar from './NavBar'
-import ProfileDetails from '../components/ProfileDetails.jsx'
+import ProfileDetails from "../components/ProfileDetails.jsx";
+import Navbar from "../components/navbar-new.jsx";
 
 const ProfilePage = () => {
-    return (
-        <div>
-            <NavBar />
-            <ProfileDetails />
-            {/* Working on it... */}
-        </div>
-    )
-}
+  return (
+    <div>
+      <Navbar />
+      <ProfileDetails />
+      {/* Working on it... */}
+    </div>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
