@@ -30,7 +30,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="h-[60px] fixed inset-0 w-screen px-5 text-white text-right flex justify-between items-center bg-blue-600">
+      <nav className="h-[60px] fixed inset-0 w-screen px-5 text-white text-right flex justify-between items-center bg-blue-600 z-10">
         <Link to="/">
           <h1 className="text-xl font-bold">HealthCare</h1>
         </Link>
