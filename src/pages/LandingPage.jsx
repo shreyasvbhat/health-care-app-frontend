@@ -23,7 +23,7 @@ export default function LandingPage() {
             <button className='bg-blue-700 hover:bg-blue-800 px-8 py-2 rounded-lg text-white'>Get Started {">"}</button>
           </div>
 
-          <img width={400} src="doctor_home.png" alt="doctors" />
+          <img draggable={false} width={400} src="doctor_home.png" alt="doctors" />
         </div>
 
         <img draggable={false} className='absolute bottom-10 left-[50%] translate-x-[-50%] w-[220px]' src="./home_hero_bottom.png" alt="home_hero" />
