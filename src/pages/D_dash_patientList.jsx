@@ -7,7 +7,7 @@ import PatientReport from '../components/PatientReport';
 
 const D_dash_patientList = ({ userName, docDetails }) => {
     const [UI, setUI] = useState(0)
-    let styles = 'underline text-blue-600 text-2xl';
+    let styles = 'underline bg-gray-300 py-2 px-5 rounded-lg text-blue-600 text-2xl';
     
     return (
         <>
@@ -27,10 +27,10 @@ const D_dash_patientList = ({ userName, docDetails }) => {
                 </div>
             </div>
             <br></br>
-            <div className='flex justify-between px-10'>
-                <button className={UI==0 ? styles : "text-xl"} onClick={() => setUI(0)}>Patient List</button>
-                <button className={UI==1 ? styles : "text-xl"} onClick={() => setUI(1)}>Appointments</button>
-                <button className={UI==2 ? styles : "text-xl"} onClick={() => setUI(2)}>Patient Report</button>
+            <div className='flex justify-around px-10'>
+                <button className={UI==0 ? styles : "text-xl hover:bg-gray-200 py-2 px-5 rounded-lg"} onClick={() => setUI(0)}>Patient List</button>
+                <button className={UI==1 ? styles : "text-xl hover:bg-gray-200 py-2 px-5 rounded-lg"} onClick={() => setUI(1)}>Appointments</button>
+                <button className={UI==2 ? styles : "text-xl hover:bg-gray-200 py-2 px-5 rounded-lg"} onClick={() => setUI(2)}>Patient Report</button>
             </div>
             <br></br>
             {UI == 0 && <PatientList/>}
