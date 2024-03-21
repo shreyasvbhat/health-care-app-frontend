@@ -19,6 +19,7 @@ const ProfilePage = () => {
                 <SearchItem
                     search={search}
                     setSearch={setSearch}
+                    placeHolder={"Enter Symptoms"}
                 />
                 <DoctorsList />
             </div>
