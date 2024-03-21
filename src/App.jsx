@@ -12,6 +12,7 @@ import NotFound from "./pages/not-found.jsx";
 import D_dash_patientList from "./pages/D_dash_patientList.jsx";
 import AptSucccess from "./pages/AptSuccess.jsx"
 import LandingPage from "./pages/LandingPage.jsx";
+import AppointmentPage from "./pages/AppointmentPage.jsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/D_dash_patient" element={<D_dash_patientList/>} />
         <Route path="/aptSuccess" element={<AptSucccess />} />
         <Route path="/landing-page" element={<LandingPage />} />
+        <Route path="/appointment" element={<AppointmentPage />} />
       </Route>
 
       {/* Authentication routes */}
