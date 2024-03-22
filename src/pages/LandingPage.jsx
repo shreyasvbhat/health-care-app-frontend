@@ -30,7 +30,7 @@ export default function LandingPage() {
             </button>
           </div>
 
-          <img width={400} src="doctor_home.png" alt="doctors" />
+          <img draggable={false} width={400} src="doctor_home.png" alt="doctors" />
         </div>
 
         <img

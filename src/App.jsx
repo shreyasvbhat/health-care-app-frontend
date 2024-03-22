@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home.jsx";
+// import Home from "./pages/Home.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 import AuthenticatedRoute from "./components/AuthenticatedRoute.jsx";
-import AboutPage from "./pages/About.jsx";
+import AboutPage from "./pages/about.jsx";
 import LocationAccess from "./pages/LocationAccess.jsx";
 import D_dash_patientList from "./pages/D_dash_patientList.jsx";
 import AptSucccess from "./pages/AptSuccess.jsx";

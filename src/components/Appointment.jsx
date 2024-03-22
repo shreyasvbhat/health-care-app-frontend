@@ -14,6 +14,7 @@ const Appointment = () => {
     <div>
       <SearchItem placeHolder={"Search"}/>
     </div>
+    <br />
     <div className='flex justify-around px-10'>
                 <button className={UI==0 ? styles : "text-[18px] hover:bg-gray-200 py-2 px-5 rounded-lg"} onClick={() => setUI(0)}>Pending</button>
                 <button className={UI==1 ? styles : "text-[18px] hover:bg-gray-200 py-2 px-5 rounded-lg"} onClick={() => setUI(1)}>Completed</button>
