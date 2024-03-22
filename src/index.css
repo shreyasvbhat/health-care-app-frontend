@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-html , body , :root{
-  height: 100%;
+html,
+body,
+:root {
+  min-height: 100vh;
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 /* Width */
 ::-webkit-scrollbar {
   width: 0.7rem; /* Adjust width as needed */
@@ -32,4 +35,12 @@ html , body , :root{
 /* Track when handle is dragged */
 ::-webkit-scrollbar-track:active {
   background: #e0e0e0; /* Color of the scrollbar track when handle is dragged */
+=======
+.bg-gradient {
+  @apply bg-gradient-to-r from-indigo-900 via-blue-600 to-cyan-400
+}
+
+.h-scr {
+  @apply h-[calc(100vh-60px)]
+>>>>>>> 9408a91f721f7e2f5eb40d552d9795cd68bdc2cc
 }

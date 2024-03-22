@@ -7,9 +7,10 @@ import { toast } from "sonner";
 import useAuth from "../hooks/use-auth.js";
 import { FcGoogle } from "react-icons/fc";
 import { BASE_URL } from "../lib/axios.js";
+import Loader from "../components/Loader.jsx";
 
 const LoginPage = () => {
-  const { loginUser } = useAuth();
+  const { loginUser, loading } = useAuth();
   let [formData, setFormData] = useState({ emailAddress: "", password: "" });
 
   const handleInputChange = (event) => {
@@ -19,11 +20,14 @@ const LoginPage = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const { error } = validateObject(formData);
-    if (error) toast.error(error);
-    loginUser({
+    if (error) {
+      toast.error(error);
+      return;
+    }
+    await loginUser({
       email: formData.emailAddress,
       password: formData.password,
     });
@@ -72,9 +76,10 @@ const LoginPage = () => {
           </button>
           <button
             type="submit"
-            className="py-2 px-24 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-sm shadow-gray-400 w-full"
+            disabled={loading}
+            className="py-2 px-24 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-sm shadow-gray-400 w-full flex justify-center"
           >
-            Login
+            {loading ? <Loader clip={true} /> : "Login"}
           </button>
         </form>
 

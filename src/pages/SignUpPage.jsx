@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import { validateObject } from "../util/validateObject.js";
 import { toast } from "sonner";
 import useAuth from "../hooks/use-auth.js";
+import Loader from "../components/Loader.jsx";
 
 const SignUpPage = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, loading } = useAuth();
   let [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -26,7 +27,7 @@ const SignUpPage = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const { error } = validateObject(formData);
     if (error) {
@@ -34,7 +35,7 @@ const SignUpPage = () => {
       return;
     }
     const registerData = { ...formData, role: checkedOption };
-    registerUser(registerData);
+    await registerUser(registerData);
   };
 
   const handleChecked = (event) => {
@@ -108,10 +109,12 @@ const SignUpPage = () => {
             <InputBar
               labelName={"Phone Number"}
               forVal={"phone"}
-              typeVal={"number"}
+              typeVal={"tel"}
               idVal={"phone"}
               nameVal={"phone"}
               value={formData.phone}
+              pattern={"[0-9]{10}"}
+              title={"Enter valid phone number"}
               handleChange={handleInputChange}
             />
             <div className="w-full mb-4">
@@ -172,10 +175,11 @@ const SignUpPage = () => {
           </div>
           <div className="mt-5">
             <button
+              disabled={loading}
               type="submit"
               className="py-2 px-4 w-full rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-sm shadow-gray-400"
             >
-              Create an account
+              {loading ? <Loader clip={true} /> : "Create an account"}
             </button>
           </div>
         </form>
