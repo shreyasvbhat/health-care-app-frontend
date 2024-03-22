@@ -34,7 +34,7 @@ export default function ReviewPage() {
       </h1>
       <div className="mt-10  p-3 w-1/4 m-auto bg-sky-50 shadow-md rounded-md overflow-hidden justify-center items-center">
         <div className="p-6">
-          <div className="flex items-center mb-4">
+          <div className="flex flex-col mb-4">
             <div>
               <label
                 htmlFor="namePatient"
