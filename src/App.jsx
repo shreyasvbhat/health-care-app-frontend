@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Router, Routes } from "react-router-dom";
 // import Home from "./pages/Home.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
@@ -6,7 +6,7 @@ import AuthenticatedRoute from "./components/AuthenticatedRoute.jsx";
 import AboutPage from "./pages/about.jsx";
 import LocationAccess from "./pages/LocationAccess.jsx";
 import D_dash_patientList from "./pages/D_dash_patientList.jsx";
-import AptSucccess from "./pages/AptSuccess.jsx";
+import AptSuccess from "./pages/AptSuccess.jsx";
 import LandingPage from "./pages/LandingPage.jsx";
 import SearchPage from "./pages/Search.jsx";
 import ProfilePage from "./pages/Profile.jsx";
@@ -16,6 +16,7 @@ import WorkDetailsPage from "./pages/WorkDetails.jsx";
 import DoctorPage from "./pages/DoctorPage.jsx";
 import DoctorDetailsPage from "./pages/DoctorDetailsPage.jsx";
 import BlogsPage from "./pages/Blogs.jsx";
+import ReviewPage from "./pages/Review.jsx";
 // import ProfilePage from "./pages/ProfilePage.jsx";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/doctor" element={<DoctorPage />} />
         <Route path="/doctor-details" element={<DoctorDetailsPage />} />
         <Route path="/blogs" element= {<BlogsPage />} />
+        <Route path="/review" element={<ReviewPage/>}/>
 
         <Route path="*" element={<NotFound />} />
 
@@ -38,7 +40,7 @@ function App() {
           <Route path="" element={<ProfilePage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="D_dash_patient" element={<D_dash_patientList />} />
-          <Route path="aptSuccess" element={<AptSucccess />} />
+          <Route path="aptSuccess" element={<AptSuccess />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Route>
