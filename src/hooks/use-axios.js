@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "../lib/axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export const useAxios = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   async function fetchData(url) {
@@ -12,7 +15,12 @@ export const useAxios = () => {
       const response = await axios.get(url);
       obj = response.data;
     } catch (e) {
-      error = e.response.data.message || "Something went wrong!";
+      const message = e.response.data.message;
+      if (message && message?.toLowerCase() === "jwt expired") {
+        toast.error("Session expired!  Please login again.");
+        navigate("/login", { replace: true });
+      }
+      error = message || "Something went wrong!";
     } finally {
       setLoading(false);
     }
@@ -28,7 +36,12 @@ export const useAxios = () => {
       console.log(response.data);
       obj = response.data;
     } catch (e) {
-      error = e.response.data.message || "Something went wrong!";
+      const message = e.response.data.message;
+      if (message && message?.toLowerCase() === "jwt expired") {
+        toast.error("Session expired!  Please login again.");
+        navigate("/login", { replace: true });
+      }
+      error = message || "Something went wrong!";
     } finally {
       setLoading(false);
     }

@@ -9,15 +9,26 @@ import useAuth from "../hooks/use-auth";
 const WorkDetailsPage = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, data: user } = useAuth();
 
-  const doctorId = params.doctorId;
+  const doctorId = params?.doctorId;
 
   useEffect(() => {
     if (!doctorId && !isAuthenticated) {
       return navigate("/", { replace: true });
     }
-  }, [doctorId, navigate, isAuthenticated]);
+  }, [doctorId, isAuthenticated]);
+
+  useEffect(() => {
+    if (user) {
+      if (user?._id !== doctorId) {
+        return navigate(`/`, { replace: true });
+      }
+      if (user?.role !== "DOCTOR") {
+        return navigate(`/`, { replace: true });
+      }
+    }
+  }, [user]);
 
   const [isPending, startTransition] = useTransition();
   const [workingTime, setWorkingTime] = useState({
