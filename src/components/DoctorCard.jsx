@@ -1,27 +1,44 @@
-import React from 'react'
+import { TbRibbonHealth } from "react-icons/tb";
+import { RiHealthBookFill } from "react-icons/ri";
+import { MdLocationPin } from "react-icons/md";
+import { MdAddHomeWork } from "react-icons/md";
+import UserImage from "../assets/user.png";
 
-const DoctorCard = ({ info }) => {
-    return (
-        <div className='flex flex-col items-center w-[310px] border-[1.3px] bg-gray-200 rounded-lg py-4 px-7 gap-2 shadow-md'>
-            <img className='h-[150px] w-[220px] border-[1px] border-black rounded-2xl bg-blue-200' src={info.imgSrc} alt="doctor-profile" />
-            <div className='flex items-center gap-4 justify-center'>
-                <div>
-                    <p className='text-[1.2rem] text-center'>{info.name}</p>
-                    <p className='text-[.9rem]'>{info.role}</p>
-                </div>
-
-                <button className='bg-blue-600 text-white py-1 px-3 rounded-md'>View Profile</button>
-            </div>
+const DoctorCard = ({ doctor, specialist }) => {
+  return (
+    <div className="capitalize border shadow shadow-blue-200 rounded-lg px-3 py-5 h-full">
+      <div className="flex flex-col items-center justify-between">
+        <div>
+          <img
+            src={doctor?.avatar || UserImage}
+            alt={doctor?.fullname}
+            className="object-cover rounded-lg h-36"
+          />
         </div>
-    )
-}
+        <div className="space-y-3 [&_p]:font-semibold">
+          <h2 className="text-xl font-bold text-cyan-700 text-center">
+            {doctor?.fullname}
+          </h2>
+          <p className="text-gray-700 text-sm text-pretty text-justify flex items-center gap-2">
+            <TbRibbonHealth />
+            <span>{specialist}</span>
+          </p>
+          <p className="text-gray-700 text-sm text-pretty text-justify flex items-center gap-2">
+            <RiHealthBookFill />
+            <span>{doctor?.workDetails?.qualification}</span>
+          </p>
+          <p className="text-gray-700 text-sm text-pretty text-justify flex items-center gap-2">
+            <MdAddHomeWork />
+            <span>{doctor?.workDetails?.currentWorkPlace}</span>
+          </p>
+          <p className="text-gray-700 text-sm text-pretty text-justify flex items-center gap-2">
+            <MdLocationPin />
+            <span>{doctor?.city}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-DoctorCard.defaultProps = {
-    info: {
-        name: "Doctor Name",
-        role: "Department",
-        imgSrc: "./profile.svg"
-    }
-}
-
-export default DoctorCard
+export default DoctorCard;
