@@ -1,5 +1,5 @@
 import React from 'react'
-import Appointment from '../components/Appointment';
+import AppointmentForm from '../components/AppointmentForm';
 
 const AppointmentPage = () => {
     let btnStyles = 'bg-indigo-500 px-5 py-2 rounded-md text-white hover:bg-indigo-700 transition-all duration-[.3s] shadow-lg';
@@ -16,7 +16,7 @@ const AppointmentPage = () => {
                 </div>
             </div>
 
-            <Appointment />
+            <AppointmentForm />
         </div>
     )
 }
