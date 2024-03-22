@@ -4,7 +4,7 @@ const CanceledAppointment = ({ CanceledAppt }) => {
   return (
     <div className='flex flex-col items-center'>
             {CanceledAppt.map((info) => (
-                <div>
+                <div key={info.name}>
                     <div className='flex justify-start gap-6 items-center bg-gray-200 hover:bg-gray-300 transition-all w-[40vw] px-2 py-2 rounded-lg'>
                         <img className='w-[80px] h-[80px] rounded-[50%] object-cover' src={info.ima}></img>
                         <div className='flex-col'>

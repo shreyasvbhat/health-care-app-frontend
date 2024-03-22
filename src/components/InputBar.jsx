@@ -8,6 +8,8 @@ const InputBar = ({
   nameVal,
   value,
   handleChange,
+  pattern,
+  title
 }) => {
   return (
     <div className="flex flex-col space-y-1 w-full">
@@ -23,6 +25,8 @@ const InputBar = ({
         id={idVal}
         name={nameVal}
         value={value}
+        pattern={pattern}
+        title={title}
         onChange={(evt) => handleChange(evt)}
       />
     </div>
