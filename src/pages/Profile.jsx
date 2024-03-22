@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import useAuth from "../hooks/use-auth";
 import UserImage from "../assets/user.png";
 import { BsTrash } from "react-icons/bs";
@@ -18,6 +18,8 @@ const ProfilePage = () => {
     city: user.city,
     avatar: user.avatar,
   });
+
+  const image = useMemo(() => editedUser?.avatar, [editedUser]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -69,7 +71,7 @@ const ProfilePage = () => {
           <div className="relative w-full flex flex-col items-center gap-2 justify-center">
             <label htmlFor={!isAdmin ? "image" : ""} className="cursor-pointer">
               <img
-                src={editedUser.avatar || UserImage}
+                src={image || UserImage}
                 alt={user?.fullname}
                 height={150}
                 width={150}

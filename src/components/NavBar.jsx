@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { FcMenu } from "react-icons/fc";
 import { BsX } from "react-icons/bs";
@@ -15,6 +15,12 @@ const Navbar = () => {
   const toggle = () => setOpen(!open);
 
   const Icon = open ? BsX : FcMenu;
+
+  const [image, setImage] = useState("");
+
+  useMemo(() => {
+    setImage(user?.avatar || UserLogo);
+  }, [user]);
 
   useEffect(() => {
     //automatically close the opened navbar at medium devices
@@ -110,7 +116,7 @@ const Navbar = () => {
             ) : (
               <Link to={"/dashboard/profile"}>
                 <img
-                  src={user?.avatar || UserLogo}
+                  src={image || UserLogo}
                   alt={user?.fullname}
                   width={30}
                   height={30}
