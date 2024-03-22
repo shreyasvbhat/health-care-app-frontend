@@ -30,7 +30,12 @@ export default function LandingPage() {
             </button>
           </div>
 
-          <img draggable={false} width={400} src="doctor_home.png" alt="doctors" />
+          <img
+            draggable={false}
+            width={400}
+            src="doctor_home.png"
+            alt="doctors"
+          />
         </div>
 
         <img
@@ -41,7 +46,7 @@ export default function LandingPage() {
         />
       </div>
 
-      <div className="flex justify-center mt-14">
+      <div className="flex justify-center mt-14 mb-6">
         <img
           draggable={false}
           className="w-[75vw]"
