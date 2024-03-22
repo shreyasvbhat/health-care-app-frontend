@@ -13,6 +13,7 @@ import ProfilePage from "./pages/Profile.jsx";
 import Navbar from "./components/NavBar.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import WorkDetailsPage from "./pages/WorkDetails.jsx";
+import DoctorPage from "./pages/DoctorPage.jsx";
 // import ProfilePage from "./pages/ProfilePage.jsx";
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/location" element={<LocationAccess />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/doctor" element={<DoctorPage />} />
+
         <Route path="*" element={<NotFound />} />
 
         {/* Protected Routes */}
