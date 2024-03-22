@@ -24,4 +24,4 @@ AptSuccess.defaultProps = {
     aptTime: "02:30 PM"
 }
 
-export default AptSuccess
+export default AptSuccess;

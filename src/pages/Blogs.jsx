@@ -1,4 +1,3 @@
-import Navbar from "../components/NavBar";
 import Post from "../components/Post";
 
 const BlogsPage = () => {
@@ -74,7 +73,6 @@ const BlogsPage = () => {
   ];
   return (
     <>
-      <Navbar/>
       <div className="flex flex-col justify-center items-center">
         <h1 className="font-bold text-4xl text-blue-800 mt-4 mb-6">
           Welcome to Health Care Blog Page!
