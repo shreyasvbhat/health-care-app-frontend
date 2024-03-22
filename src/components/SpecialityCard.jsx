@@ -19,7 +19,7 @@ const SpecialityCard = ({ spec }) => {
           <div className="flex flex-col justify-between gap-3">
             <label className="text-cyan-700 font-semibold mt-3">Possible Symptoms:</label>
             <div className="flex items-center gap-2 flex-wrap">
-              {spec.possibleSymptoms.map((symp, i) => (
+              {spec?.possibleSymptoms?.map((symp, i) => (
                 <p
                   key={i}
                   className="capitalize px-2 py-1 rounded-full bg-cyan-700 text-white text-xs"

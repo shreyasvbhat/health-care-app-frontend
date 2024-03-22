@@ -2,11 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-html , body , :root{
+html,
+body,
+:root {
   min-height: 100vh;
   box-sizing: border-box;
 }
 
-.bg-gradient{
+.bg-gradient {
   @apply bg-gradient-to-r from-indigo-900 via-blue-600 to-cyan-400
+}
+
+.h-scr {
+  @apply h-[calc(100vh-60px)]
 }
