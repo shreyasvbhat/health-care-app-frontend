@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import DetailsCard from '../components/DetailsCard';
+import ReviewComponent from '../components/ReviewComponent';
+import Capsules from '../components/Capsules';
 
 const DoctorDetailsPage = ({ doctorName, about, workingHours }) => {
     let data = [
@@ -9,6 +11,35 @@ const DoctorDetailsPage = ({ doctorName, about, workingHours }) => {
         { iconName: "comment-dots", achivements: "4,956", value: "Review" }
     ];
 
+    let reviews = [
+        {
+            comment: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio reprehenderit excepturi porro quos sit doloremque aliquid, dicta suscipit quisquam ullam tenetur. Iure cumque amet facilis mollitia reprehenderit quas soluta voluptas voluptates vel tenetur impedit aperiam ullam incidunt, dolores eveniet animi eaque eos suscipit quia eius accusamus optio velit consequatur. Fugit.",
+            usersName: "Lorem ipsum-1",
+            rating: '5.0',
+            number: 11,
+            datetime: "months",
+            imgSrc: "./user.png"
+        },
+        {
+            comment: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio reprehenderit excepturi porro quos sit doloremque aliquid, dicta suscipit quisquam ullam tenetur. Iure cumque amet facilis mollitia reprehenderit quas soluta voluptas voluptates vel tenetur impedit aperiam ullam incidunt, dolores eveniet animi eaque eos suscipit quia eius accusamus optio velit consequatur. Fugit.",
+            usersName: "Lorem ipsum-2",
+            rating: '5.0',
+            number: 1,
+            datetime: "year",
+            imgSrc: "./user.png"
+        },
+        {
+            comment: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio reprehenderit excepturi porro quos sit doloremque aliquid, dicta suscipit quisquam ullam tenetur. Iure cumque amet facilis mollitia reprehenderit quas soluta voluptas voluptates vel tenetur impedit aperiam ullam incidunt, dolores eveniet animi eaque eos suscipit quia eius accusamus optio velit consequatur. Fugit.",
+            usersName: "Lorem ipsum-3",
+            rating: '5.0',
+            number: 1,
+            datetime: "minute",
+            imgSrc: "./user.png"
+        }
+    ];
+
+    let filter = ["Verified", "Latest", "With Photos"]
+
     useEffect(() => {
         document.querySelector("main").classList = "px-0 pt-[60px]";
     }, []);
@@ -16,43 +47,79 @@ const DoctorDetailsPage = ({ doctorName, about, workingHours }) => {
     return (
         <div className='flex flex-col gap-8'>
             <h2 className='font-[400] text-2xl mt-5 pl-8'>{doctorName}</h2>
-            <img className='absolute right-0 top-16 w-80' src="./doctor_dash.png" alt="doctor-dash" />
+            <img className='absolute right-0 top-16 w-64 transition-all duration-200 z-10 md:w-80' src="./doctor_dash.png" alt="doctor-dash" />
 
             <div className='flex flex-col gap-9'>
-                <div className='bg-gradient-to-l from-indigo-500 to-sky-400 py-12 px-14 flex gap-10'>
+                <div className='bg-gradient-to-l from-indigo-500 to-sky-400 py-12 px-14 flex gap-10 opacity-[0.95] relative'>
                     <div className='flex flex-col gap-7 items-start'>
                         <h1 className='text-4xl font-bold text-white'>Don't Let Your Health <br />Take a Backseat!</h1>
                         <p className='font-semibold text-[1.1rem] text-blue-950'>Scheduled an appointment with one of our <br />exprerienced medical professional today!</p>
                         <button className='bg-blue-700 py-2 px-9 rounded-lg text-white hover:bg-blue-800 transition-all duration-300'>Book Now {">"}</button>
                     </div>
 
-                    <img draggable="false" src="./honeycomb.svg" alt="honeycomb" />
+                    <img className='absolute -z-10 left-[30vw] w-[40vw]' draggable="false" src="./honeycomb.svg" alt="honeycomb" />
                 </div>
 
                 <div className='flex w-[70vw] justify-around ml-5 border-l-4 border-r-4 border-blue-400 bg-white py-6'>
-                    {data.map(info => <DetailsCard iconName={info.iconName} achievements={info.achivements} value={info.value} />)}
+                    {data.map((info, i) => <DetailsCard key={i} iconName={info.iconName} achievements={info.achivements} value={info.value} />)}
                 </div>
             </div>
 
+            <hr className='border-gray-300 border-[1px]' />
+
             <div>
-                <h2 className='px-7 my-4 font-semibold text-3xl'>ABOUT</h2>
+                <h2 className='px-7 mb-4 font-semibold text-3xl'>ABOUT</h2>
                 <p className='w-[70vw] ml-7 text-[1.2rem] text-justify'>{about}</p>
             </div>
 
+            <hr className='border-gray-300 border-[1px]' />
+
             <div>
-                <h2 className='px-7 my-4 font-semibold text-3xl'>Working Hours:</h2>
+                <h2 className='px-7 mb-4 font-semibold text-3xl'>Working Hours:</h2>
                 <div className='ml-7 space-y-1'>
-                    {workingHours.map(time => {
+                    {workingHours.map((time, i) => {
                         let key = Object.keys(time)[0];
 
                         return (
-                            <div className='flex w-[300px] justify-between'>
+                            <div key={i} className='flex w-[300px] justify-between'>
                                 <p className='font-semibold text-[1.2rem]'>{key}:</p>
                                 <p>{time[key].from} - {time[key].to}</p>
                             </div>
                         )
                     })}
                 </div>
+            </div>
+
+            <hr className='border-gray-300 border-[1px]' />
+
+            <div className='space-y-5'>
+                <div className='flex items-center justify-between px-7'>
+                    <h2 className='font-semibold text-3xl'>Reviews</h2>
+                    <button className='flex items-center gap-4'>
+                        <i className="fa-solid fa-pen fa-xl" style={{ color: "#0886fd" }}></i>
+                        <p className='font-semibold text-xl text-blue-600 hover:text-blue-800'>add review</p>
+                    </button>
+                </div>
+
+                <div className='flex items-center justify-center'>
+                    <div className='bg-white py-[12px] px-3 border-[1px] border-r-transparent border-gray-500 rounded-l-lg focus:border-none'>
+                        <i className="fa-solid fa-magnifying-glass fa-2xl" style={{ color: "#0886fd" }}></i>
+                    </div>
+                    <input className='py-3 px-3 w-[50vw] border-[1px] border-gray-500 rounded-r-lg border-l-transparent outline-none' type="text" placeholder='Search in reviews' />
+                </div>
+
+                <div className='flex justify-center gap-9'>
+                    {filter.map((curr, i) => <Capsules key={i} name={curr} />)}
+                </div>
+
+                <hr className='border-gray-300 border-[1px]' />
+
+                {reviews.map((review, i) => (
+                    <>
+                        <ReviewComponent key={i} info={review} />
+                        <hr className='border-gray-300 border-[1px]' />
+                    </>
+                ))}
             </div>
         </div>
     )
