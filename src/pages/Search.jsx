@@ -93,7 +93,7 @@ function SearchPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 h-screen">
       <h1 className="text-3xl font-bold mb-4 uppercase text-center text-blue-700">
         Search for Doctor
       </h1>
