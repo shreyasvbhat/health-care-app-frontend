@@ -132,7 +132,7 @@ function SearchPage() {
                 searchResults.map((doctor) => (
                   <Link
                     key={doctor._id}
-                    to={`/doctor/${doctor?.fullname}`}
+                    to={`/doctor?id=${doctor?._id}`}
                     className="hover:scale-105 scale-100 transition-all duration-300 ease-in-out my-2 h-full"
                     replace
                   >
