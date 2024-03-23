@@ -2,14 +2,14 @@ import locationImage from "../assets/location.png";
 
 const LocationAccess = () => {
   return (
-    <div className="flex flex-col justify-center items-center gap-4 py-6">
+    <div className="flex flex-col justify-center items-center gap-4 py-4 h-screen">
       <img
-        className="mt-20 shadow-2xl rounded-[50%]"
-        width={300}
+        className="shadow-2xl rounded-[50%]"
+        width={280}
         src={locationImage}
         alt="location-access"
       />
-      <h2 className="font-bold text-3xl">Location</h2>
+      <h2 className="font-bold text-3xl text-blue-900 mt-2">Location</h2>
       <p className="font-[400] text-[.9rem] text-center">
         Your location services are switched off. Please enable location to help
         us serve better.
