@@ -18,6 +18,7 @@ import DoctorDetailsPage from "./pages/DoctorDetailsPage.jsx";
 import BlogsPage from "./pages/Blogs.jsx";
 import ReviewPage from "./pages/Review.jsx";
 import PrescriptionPage from "./pages/PrescriptionPage.jsx";
+// import Footer from "./components/Footer.jsx";
 // import ProfilePage from "./pages/ProfilePage.jsx";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/blogs" element= {<BlogsPage />} />
         <Route path="/review" element={<ReviewPage/>}/>
         <Route path="/prescription" element={<PrescriptionPage/>}/>
+        {/* <Route element={<Footer/>}/> */}
 
         <Route path="*" element={<NotFound />} />
 

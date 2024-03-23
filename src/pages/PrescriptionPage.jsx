@@ -1,3 +1,5 @@
+import InputBar from "../components/InputBar";
+
 export default function ReviewPage() {
   return (
     <>
@@ -8,51 +10,30 @@ export default function ReviewPage() {
         <div className="p-6">
           <div className="flex flex-col mb-4">
             <div className="mt-1">
-              <label
-                htmlFor="nameDoctor"
-                className="block text-sm font-medium text-purple-900"
-              >
-                Name of Doctor
-              </label>
-              <input
-                type="text"
-                name="nameDoctor"
-                id="nameDoctor"
-                rows="2"
-                className="p-2 mt-1 mb-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                placeholder="Enter doctor's name..."
+              <InputBar
+                labelName={"Name Of Doctor"}
+                type={"text"}
+                id={"nameDoctor"}
+                name={"nameDoctor"}
+                // placeholder={"Enter doctor's name..."}
               />
             </div>
-            <div className="mt-2">
-              <label
-                htmlFor="contactDoctor"
-                className="block text-sm font-medium text-purple-900"
-              >
-                Email of Doctor / Phone Number / Details
-              </label>
-              <input
-                type="email"
-                name="contactDoctor"
-                id="contactDoctor"
-                rows="2"
-                className="p-2 mt-1 mb-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                placeholder="doctor's email here..."
+            <div className="mt-4">
+              <InputBar
+                labelName={"Email of Doctor / Phone Number / Details"}
+                typeVal={"text"}
+                idVal={"contactDoctor"}
+                nameVal={"contactDoctor"}
+                // placeholder={"doctor contact details here..."}
               />
             </div>
-            <div className="mt-2">
-              <label
-                htmlFor="namePatient"
-                className="block text-sm font-medium text-purple-900"
-              >
-                Name of Patient
-              </label>
-              <input
-                type="text"
-                name="namePatient"
-                id="namePatient"
-                rows="2"
-                className="p-2 mt-1 mb-3 focus:ring-indigo-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                placeholder="Enter your name.."
+            <div className="mt-4">
+              <InputBar
+                labelName={"Name of Patient"}
+                typeVal={"text"}
+                idVal={"namePatient"}
+                nameVal={"namePatient"}
+                // placeholder={"Enter patient name.."}
               />
             </div>
           </div>
