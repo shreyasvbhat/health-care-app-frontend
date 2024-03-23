@@ -29,7 +29,7 @@ export default function ReviewPage() {
   const [rating, setRating] = useState(0);
 
   return (
-    <>
+    <div className="h-screen">
       <h1 className="text-center mt-16 font-mono font-bold text-3xl text-blue-800">
         Your Feedback Matters!
       </h1>
@@ -88,6 +88,6 @@ export default function ReviewPage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

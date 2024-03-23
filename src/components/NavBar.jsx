@@ -4,7 +4,7 @@ import { FcMenu } from "react-icons/fc";
 import { BsX } from "react-icons/bs";
 import useAuth from "../hooks/use-auth";
 import Loader from "./Loader";
-import Logo from "../assets/icon.png";
+import Logo from "../assets/logo_2.png";
 import UserLogo from "../assets/user.png";
 
 const Navbar = () => {
@@ -80,8 +80,7 @@ const Navbar = () => {
                 <img
                   src={Logo}
                   alt="healthcare logo"
-                  height={20}
-                  width={25}
+                  width={50}
                   className="object-cover"
                 />
                 <h1 className="text-xl font-bold">HealthCare</h1>

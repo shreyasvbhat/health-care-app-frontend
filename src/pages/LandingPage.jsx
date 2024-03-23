@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import heroLogo from "../assets/logo_2.png";
 
 export default function LandingPage() {
   useEffect(() => {
@@ -13,7 +14,7 @@ export default function LandingPage() {
 
       <div className="bg-gradient-to-tl from-slate-300 bg-blue-400 relative p-0 space-y-3 pt-2 mb-4 shadow-md">
         <div className="flex justify-end pr-3">
-          <img width={50} src="./health.svg" alt="health-care" />
+          <img width={120} src={heroLogo} alt="health-care" />
         </div>
 
         <div className="flex justify-between items-center pl-32">
