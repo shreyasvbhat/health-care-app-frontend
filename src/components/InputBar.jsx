@@ -10,11 +10,12 @@ const InputBar = ({
   handleChange,
   pattern,
   title
+  // placeholder,
 }) => {
   return (
     <div className="flex flex-col space-y-1 w-full">
       <label
-        className="text-[0.8rem] text-gray-500 font-500 text-left"
+        className="text-[0.85rem] text-blue-500 font-500 text-left"
         htmlFor={forVal}
       >
         {labelName}
@@ -27,6 +28,7 @@ const InputBar = ({
         value={value}
         pattern={pattern}
         title={title}
+        // placeholder={placeholder}
         onChange={(evt) => handleChange(evt)}
       />
     </div>

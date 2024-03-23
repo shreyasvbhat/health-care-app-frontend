@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import InputBar from "../components/InputBar";
 
 // Star Rating Component
 const StarRating = ({ rating, onChange }) => {
@@ -35,43 +36,27 @@ export default function ReviewPage() {
       <div className="mt-10  p-3 w-1/4 m-auto bg-sky-50 shadow-md rounded-md overflow-hidden justify-center items-center">
         <div className="p-6">
           <div className="flex flex-col mb-4">
-            <div>
-              <label
-                htmlFor="namePatient"
-                className="block text-sm font-medium text-purple-900"
-              >
-                Name of Patient
-              </label>
-              <input
-                type="text"
-                name="namePatient"
-                id="namePatient"
-                rows="2"
-                className="p-2 mt-1 mb-3 focus:ring-indigo-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                placeholder="Enter your name.."
-                value={namePatient}
-                onChange={(e) => setNamePatient(e.target.value)}
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              htmlFor="nameDoctor"
-              className="block text-sm font-medium text-purple-900"
-            >
-              Name of Doctor
-            </label>
-            <input
-              type="text"
-              name="nameDoctor"
-              id="nameDoctor"
-              rows="2"
-              className="p-2 mt-1 mb-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-              placeholder="Enter doctor's name..."
-              value={nameDoctor}
-              onChange={(e) => setNameDoctor(e.target.value)}
+            <InputBar
+              labelName={"Name Of Patient"}
+              forVal={"namePatient"}
+              typeVal={"text"}
+              idVal={"namePatient"}
+              nameVal={"namePatient"}
+              value={namePatient}
+              onChange={(e) => setNamePatient(e.target.value)}
+              // placeholder={"Enter your name.."}
             />
           </div>
+          <InputBar
+            labelName={"Name Of Doctor"}
+            forVal={"nameDoctor"}
+            typeVal={"text"}
+            idVal={"nameDoctor"}
+            nameVal={"nameDoctor"}
+            value={nameDoctor}
+            onChange={(e) => setNameDoctor(e.target.value)}
+            // placeholder={"Enter doctor's name..."}
+          />
           <div className="mb-4 mt-3">
             <label
               htmlFor="rating"
@@ -94,7 +79,10 @@ export default function ReviewPage() {
             <button className="px-4 py-2 bg-gray-200 text-purple-900 rounded-md focus:outline-none hover:bg-gray-300">
               Cancel
             </button>
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600">
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none hover:bg-blue-600"
+            >
               SUBMIT
             </button>
           </div>
