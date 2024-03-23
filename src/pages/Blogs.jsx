@@ -78,8 +78,8 @@ const BlogsPage = () => {
           Welcome to Health Care Blog Page!
         </h1>
         <div className="grid grid-cols-3 gap-4 p-8">
-          {postData.map((e) => {
-            return <Post content={e} />;
+          {postData.map((e , i) => {
+            return <Post key={i} content={e} />;
           })}
         </div>
       </div>
