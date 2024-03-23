@@ -2,7 +2,7 @@ import InputBar from "../components/InputBar";
 
 export default function ReviewPage() {
   return (
-    <>
+    <div className="h-screen">
       <h1 className="text-center mt-10 font-mono font-bold text-3xl text-blue-800">
         Prescription Details!
       </h1>
@@ -55,6 +55,6 @@ export default function ReviewPage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
