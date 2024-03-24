@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useAuth from "../hooks/use-auth";
 import UserImage from "../assets/user.png";
 import { BsTrash } from "react-icons/bs";
@@ -19,7 +19,11 @@ const ProfilePage = () => {
     avatar: user.avatar,
   });
 
-  const image = useMemo(() => editedUser?.avatar, [editedUser]);
+  const [image, setImage] = useState("");
+
+  useEffect(() => {
+    setImage(user?.avatar || UserImage);
+  }, [editedUser]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -76,6 +80,7 @@ const ProfilePage = () => {
                 height={150}
                 width={150}
                 className="rounded-full object-cover shadow-sm shadow-gray-400"
+                onError={() => setImage(UserImage)}
               />
               <input
                 type={"file"}

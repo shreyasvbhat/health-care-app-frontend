@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { FcMenu } from "react-icons/fc";
 import { BsX } from "react-icons/bs";
@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const [image, setImage] = useState("");
 
-  useMemo(() => {
+  useEffect(() => {
     setImage(user?.avatar || UserLogo);
   }, [user]);
 
@@ -120,6 +120,7 @@ const Navbar = () => {
                   width={30}
                   height={30}
                   className="rounded-full object-cover"
+                  onError={() => setImage(UserLogo)}
                 />
               </Link>
             )}
