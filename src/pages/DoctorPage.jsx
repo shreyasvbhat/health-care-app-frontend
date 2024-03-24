@@ -67,7 +67,7 @@ const DoctorPage = () => {
   }
   return (
     <div className="min-h-screen">
-      <div className="container mx-auto p-5">
+      <div className="container mx-auto px-5 mb-5">
         <div className="bg-gradient-to-l from-indigo-500 to-sky-400 py-12 px-14 flex gap-10 opacity-[0.95] relative">
           <div className="flex flex-col gap-7 items-start">
             <h1 className="text-4xl font-bold text-white">
