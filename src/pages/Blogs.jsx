@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Post from "../components/Post";
 
 const BlogsPage = () => {
@@ -72,18 +73,19 @@ const BlogsPage = () => {
     },
   ];
   return (
-    <>
-      <div className="flex flex-col justify-center items-center">
+    <div className="min-h-screen">
+      <div className="flex flex-col justify-center items-center container mx-auto">
         <h1 className="font-bold text-4xl text-blue-800 mt-4 mb-6">
           Welcome to Health Care Blog Page!
         </h1>
         <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-          {postData.map((e , i) => {
+          {postData.map((e, i) => {
             return <Post key={i} content={e} />;
           })}
         </div>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 

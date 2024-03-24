@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import heroLogo from "../assets/logo_2.png";
+import Footer from "../components/Footer";
 
 export default function LandingPage() {
   useEffect(() => {
@@ -7,7 +8,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen">
       <div className="absolute top-4 left-4 w-1/3 z-[1] h-fit">
         <img draggable={false} src="./honeycomb.svg" alt="style" />
       </div>
@@ -55,6 +56,7 @@ export default function LandingPage() {
           alt="about"
         />
       </div>
+      <Footer />
     </div>
   );
 }

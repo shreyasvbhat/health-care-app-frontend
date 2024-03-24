@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./NavBar";
-import Footer from "./Footer";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -8,15 +7,12 @@ const Layout = () => {
     <div className="relative flex flex-col justify-between h-full">
       <Navbar /> {/* Navbar */}
       <main
-        className={`py-[60px] mb-6 ${
+        className={`pt-[60px] ${
           pathname.includes("dashboard") ? "px-0" : "px-5"
         }`}
       >
         <Outlet /> {/* Content */}
       </main>
-      <footer className="absolute bottom-0 w-full">
-        <Footer />
-      </footer>
     </div>
   );
 };

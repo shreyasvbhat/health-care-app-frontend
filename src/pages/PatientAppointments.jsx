@@ -60,7 +60,7 @@ const PatientAppointments = () => {
           onChange={(e) => setValue(e.target.value)}
           className="py-2 px-4 rounded-md focus:outline-none border border-gray-300 w-[400px]"
         />
-        {filtered.length < 1 && (
+        {value && filtered.length < 1 && (
           <p className="text-red-500 text-sm ml-1">No Results</p>
         )}
       </div>
