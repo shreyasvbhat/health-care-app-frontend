@@ -30,10 +30,10 @@ export default function ReviewPage() {
 
   return (
     <div className="h-screen">
-      <h1 className="text-center mt-16 font-mono font-bold text-3xl text-blue-800">
+      <h1 className="py-4 text-center font-mono font-bold text-3xl text-blue-800">
         Your Feedback Matters!
       </h1>
-      <div className="mt-10  p-3 w-1/4 m-auto bg-sky-50 shadow-md rounded-md overflow-hidden justify-center items-center">
+      <div className="mt-5 p-3 w-1/4 m-auto bg-sky-50 shadow-md rounded-md overflow-hidden justify-center items-center">
         <div className="p-6">
           <div className="flex flex-col mb-4">
             <InputBar

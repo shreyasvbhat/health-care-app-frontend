@@ -77,7 +77,7 @@ const BlogsPage = () => {
         <h1 className="font-bold text-4xl text-blue-800 mt-4 mb-6">
           Welcome to Health Care Blog Page!
         </h1>
-        <div className="grid grid-cols-3 gap-4 p-8">
+        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
           {postData.map((e , i) => {
             return <Post key={i} content={e} />;
           })}

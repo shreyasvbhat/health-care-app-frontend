@@ -22,7 +22,7 @@ const PasswordField = ({
   return (
     <div className="text-[0.8rem] text-gray-500 font-500 flex flex-col w-full">
       <div className="flex justify-between">
-        <label className="text-left" htmlFor={forVal}>
+        <label className="text-[0.85rem] text-blue-500 font-500 text-left" htmlFor={forVal}>
           {labelName}
         </label>
         <button

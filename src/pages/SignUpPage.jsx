@@ -118,7 +118,7 @@ const SignUpPage = () => {
               handleChange={handleInputChange}
             />
             <div className="w-full mb-4">
-              <label className="text-[0.8rem] text-gray-500 font-500 text-left">
+              <label className="text-[0.85rem] text-blue-500 font-500 text-left">
                 Gender
               </label>
               <div className="flex items-center gap-8 my-2 px-1">
