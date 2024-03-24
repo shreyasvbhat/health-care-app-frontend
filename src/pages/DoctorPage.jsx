@@ -1,34 +1,61 @@
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useAxios } from "../hooks/use-axios";
 import { useEffect, useState } from "react";
+import { useAxios } from "../hooks/use-axios";
 import { ClipLoader } from "react-spinners";
-import UserLogo from "../assets/user.png";
+import ReviewCard from "../components/ReviewCard";
+import DoctorDetails from "../components/DoctorDetails";
+import useAuth from "../hooks/use-auth";
 
 const DoctorPage = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   const { fetchData, loading } = useAxios();
   const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
 
-  const doctorId = searchParams.get("id");
-
+  const [specialities, setSpecialities] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [doctor, setDoctor] = useState({});
 
+  const getAllSpecialities = async () => {
+    const { obj, error } = await fetchData("/specialities");
+    if (error) console.log(error);
+    else {
+      setSpecialities(obj?.data);
+    }
+  };
+
   const getDoctor = async () => {
-    const { obj, error } = await fetchData(
-      `/users/doctors/getDoctor/${doctorId}`
-    );
+    const { obj, error } = await fetchData(`/users/doctors/getDoctor/${id}`);
     if (error) console.log(error);
     else {
       setDoctor(obj?.data);
     }
   };
 
-  useEffect(() => {
-    if (!doctorId) {
-      return navigate("/search", { replace: true });
+  const getAllReviews = async () => {
+    const { obj, error } = await fetchData(`/reviews/getDoctorReviews/${id}`);
+    if (error) console.log(error);
+    else {
+      setReviews(obj?.data);
     }
-    getDoctor();
-  }, [doctorId]);
+  };
+  useEffect(() => {
+    if (!id) navigate("/search", { replace: true });
+    else {
+      getDoctor();
+      if (doctor) {
+        getAllSpecialities();
+        getAllReviews();
+      }
+    }
+  }, [id]);
+
+  console.log(reviews);
+
+  const specialist = specialities.find(
+    (s) => s.name === doctor?.workDetails?.specialities[0]?.name
+  )?.term;
 
   if (loading) {
     return (
@@ -38,85 +65,55 @@ const DoctorPage = () => {
     );
   }
   return (
-    <div className="container mx-auto mt-8">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-        <div className="md:flex">
-          <div className="md:flex-shrink-0">
-            <img
-              className="h-48 w-full object-cover md:w-48 rounded-full" // Make image rounded
-              src={doctor?.avatar || UserLogo}
-              alt="Doctor"
-            />
-          </div>
-          <div className="p-8">
-            <div className="uppercase tracking-wide text-sm text-teal-500 font-semibold">
-              {doctor.name}
-            </div>
-            <div className="mt-2 text-xl font-sans">
-              {doctor?.workDetails?.qualification}
-            </div>{" "}
-            {/* Use a sans-serif font for body text */}
-            <div className="mt-2 flex items-center">
-              <span className="font-bold mr-2">
-                <svg
-                  className="h-5 w-5 text-teal-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 10a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L13 8.586V5a2 2 0 114 0v3.586l-1.293-1.293A1 1 0 0010 10z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-              <span>{doctor.workDetails.workingTime}</span>
-            </div>
-            <div className="mt-2 flex items-center">
-              <span className="font-bold mr-2">
-                <svg
-                  className="h-5 w-5 text-teal-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm5 2v11l5-5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-              <span>{doctor.workDetails.registrationId}</span>
-            </div>
-            <div className="mt-2 flex items-center">
-              <span className="font-bold mr-2">
-                <svg
-                  className="h-5 w-5 text-teal-500"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm5 2v11l5-5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-              <span>
-                {doctor.workDetails.currentWorkPlace}, {doctor.city}
-              </span>
-            </div>
-          </div>
+    <div className="w-full">
+      <div className="bg-gradient-to-l from-indigo-500 to-sky-400 py-12 px-14 flex gap-10 opacity-[0.95] relative">
+        <div className="flex flex-col gap-7 items-start">
+          <h1 className="text-4xl font-bold text-white">
+            Don't Let Your Health <br />
+            Take a Backseat!
+          </h1>
+          <p className="font-semibold text-[1.1rem] text-blue-950">
+            Scheduled an appointment with one of our <br />
+            exprerienced medical professional today!
+          </p>
+          <Link
+            to={
+              isAuthenticated
+                ? `/appointment?id=${doctor?._id}&specialist=${specialist}`
+                : "/login"
+            }
+            className="py-2 px-4 bg-gradient text-white rounded-md"
+          >
+            Book An Appointment
+          </Link>
         </div>
+
+        <img
+          className="absolute right-0 bottom-1/4 overflow-hidden md:right-36 -z-50 w-[700px]"
+          draggable="false"
+          src="./honeycomb.svg"
+          alt="honeycomb"
+        />
       </div>
 
-      <div className="mt-4 text-center">
-        <Link
-          to="/book-appointment"
-          className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full" // Button with rounded corners
-        >
-          Book Appointment
-        </Link>
+      {/* Display doctor details */}
+      <DoctorDetails
+        doctor={doctor}
+        specialist={specialist}
+        showAppointmentButon={true}
+      />
+
+      <hr className="border-b border-b-gray-400" />
+      {/* Reviews */}
+
+      <div className="mt-4">
+        <h2 className="text-2xl font-semibold">Reviews</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ReviewCard user={doctor} />
+          <ReviewCard user={doctor} />
+          <ReviewCard user={doctor} />
+          <ReviewCard user={doctor} />
+        </div>
       </div>
     </div>
   );
