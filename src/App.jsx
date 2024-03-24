@@ -11,7 +11,6 @@ import ProfilePage from "./pages/Profile.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import WorkDetailsPage from "./pages/WorkDetails.jsx";
 import DoctorPage from "./pages/DoctorPage.jsx";
-import DoctorDetailsPage from "./pages/DoctorDetailsPage.jsx";
 import BlogsPage from "./pages/Blogs.jsx";
 import ReviewPage from "./pages/Review.jsx";
 import PrescriptionPage from "./pages/PrescriptionPage.jsx";
@@ -30,7 +29,6 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/doctor" element={<DoctorPage />} />
           <Route path="/appointment" element={<AppointmentPage />} />
-          <Route path="/doctor-details" element={<DoctorDetailsPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/review" element={<ReviewPage />} />
           <Route path="/prescription" element={<PrescriptionPage />} />
