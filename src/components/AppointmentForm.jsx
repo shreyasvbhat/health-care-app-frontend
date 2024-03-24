@@ -1,44 +1,178 @@
-import React from 'react'
-import AppointmentInput from './AppointmentInput'
-import Options from './Options'
+import { useState } from "react";
+import useAuth from "../hooks/use-auth";
+import { useAxios } from "../hooks/use-axios";
+import { toast } from "sonner";
+import { ClipLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+import { validateObject } from "../util/validateObject";
 
-const AppointmentForm = () => {
-    let options = [[
-        { value: "Routine Checkup", id: "routine" }, { value: "New Patient Visit", id: "newVisit" }, { value: "Specific Concern", id: "specific" }
-    ],
-    [
-        { value: "Pediatric", id: "pediatric" }, { value: "Obstestrics and Gynecology", id: "gyneco" }, { value: "Cardiology", id: "cardio" }, { value: "Neurology", id: "neuro" }, { value: "Psychiatry", id: "psychiatry" }
-    ]]
+const AppointmentForm = ({ doctorId }) => {
+  const navigate = useNavigate();
+  const { data: user } = useAuth();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const { loading, mutateData } = useAxios();
+
+  const [data, setData] = useState({
+    datetime: "",
+    type: "",
+    mode: "",
+    description: "",
+  });
+  const handleChange = (e) => {
+    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { error: validationError } = validateObject({ ...data });
+    if (validationError) {
+      toast.error(validationError);
+      return;
     }
-
-    return (
-        <div className='py-7'>
-            <h2 className='font-semibold text-indigo-900 text-xl'>BOOK AN</h2>
-            <h1 className='font-bold text-indigo-900 text-4xl'>Appointment</h1>
-            <br /><br />
-            <div className='flex justify-between relative'>
-                <form className='w-[60vw] flex flex-col gap-7 items-start' onSubmit={e => handleSubmit(e)}>
-                    <div className='grid grid-cols-2 justify-items-start gap-y-7 gap-x-10'>
-                        <AppointmentInput idValue={"name"} typeValue={"text"} labelName={"Name"} />
-                        <AppointmentInput idValue={"phone"} typeValue={"tel"} labelName={"Phone Number"} />
-                        <AppointmentInput idValue={"date"} typeValue={"date"} labelName={"Preferred Date"} />
-                        <AppointmentInput idValue={"time"} typeValue={"time"} labelName={"Preferred Time"} />
-                    </div>
-                    <Options options={options[0]} header={"Reason for Visit"} name={"reason"} />
-                    <Options options={options[1]} header={"Departments"} name={"dept"} />
-                    <button className='bg-blue-600 text-white px-8 py-2 rounded-lg hover:bg-blue-800 transition-all duration-[.3s]'>Submit {" >"}</button>
-                </form>
-
-                <div>
-                    <img width={230} className='drop-shadow-xl mr-5' src="./doctor_appointment.png" alt="doctor-apt" />
-                    <img className='rotate-90 absolute top-0 right-0 -z-10 w-[30vw]' src="./bg-style.svg" alt="styles" />
-                </div>
-            </div>
+    // const formattedDateTime = moment(data.datetime).format(
+    //   "DD-MM-YYYY, h:mm:ss a"
+    // );
+    const body = {
+      ...data,
+      patient: user?._id,
+      doctor: doctorId,
+    };
+    console.log(body);
+    const { obj, error } = await mutateData("/appointment/create", body);
+    if (error) {
+      toast.error(error || "Failed to book an appointment");
+      return;
+    }
+    if (obj) {
+      toast.success(obj?.message || "Appointment booked successfully!");
+      navigate("/", { replace: true });
+    }
+  };
+  return (
+    <form
+      className="w-full md:w-[400px] mx-auto space-y-4"
+      onSubmit={handleSubmit}
+    >
+      <div className="space-y-2">
+        <label htmlFor={"name"} className=" text-indigo-900 font-[500]">
+          Name
+        </label>
+        <input
+          className="py-2 px-4 rounded-full border border-gray-400 w-full disabled:bg-gray-300"
+          type={"text"}
+          value={user?.fullname}
+          disabled
+        />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor={"phone"} className=" text-indigo-900 font-[500]">
+          Phone
+        </label>
+        <input
+          className="py-2 px-4 rounded-full border border-gray-400 w-full disabled:bg-gray-300"
+          type={"text"}
+          value={user?.phone}
+          disabled
+        />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor={"datetime"} className=" text-indigo-900 font-[500]">
+          Date Time
+        </label>
+        <input
+          className="py-2 px-4 rounded-full border border-gray-400 w-full disabled:bg-gray-400"
+          type={"datetime-local"}
+          name="datetime"
+          id={"datetime"}
+          pattern="[0-9]{10}"
+          onChange={handleChange}
+          value={data.datetime}
+        />
+        <p className="text-gray-500 text-xs ml-1">
+          *Select time within the range of doctor working hours
+        </p>
+      </div>
+      <div className="space-y-2">
+        <label htmlFor={"description"} className=" text-indigo-900 font-[500]">
+          What Happened?
+        </label>
+        <textarea
+          className="py-2 px-4 rounded-md border border-gray-400 w-full"
+          name="description"
+          id={"description"}
+          rows={2}
+          onChange={handleChange}
+          value={data.description}
+        />
+        <p className="text-gray-500 text-xs ml-1">
+          *Enter the cause for appointment with symptoms seprated by comma(,)
+        </p>
+      </div>
+      <div>
+        <label className=" text-indigo-900 font-[500]">Reason</label>
+        <div className="flex items-center gap-6 ml-1 mt-2">
+          <div className="flex items-center gap-2">
+            <label htmlFor="first">First Time Visit</label>
+            <input
+              type="radio"
+              id="first"
+              name="type"
+              value="First Time Visit"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <label htmlFor="routine">Routine CheckUp</label>
+            <input
+              type="radio"
+              id="routine"
+              name="type"
+              value="Routine CheckUp"
+              onChange={handleChange}
+            />
+          </div>
         </div>
-    )
-}
+      </div>
+      <div>
+        <label className=" text-indigo-900 font-[500]">Mode</label>
+        <div className="flex items-center gap-6 ml-1 mt-2">
+          <div className="flex items-center gap-2">
+            <label htmlFor="online">Online</label>
+            <input
+              type="radio"
+              id="online"
+              name="mode"
+              value="ONLINE"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <label htmlFor="offline">Offline</label>
+            <input
+              type="radio"
+              id="offline"
+              name="mode"
+              value="OFFLINE"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="col-span-12">
+        <button
+          type="submit"
+          disabled={loading}
+          className="py-2 px-4 rounded-md bg-gradient text-white"
+        >
+          {loading ? (
+            <ClipLoader size={"1.1rem"} color="white" />
+          ) : (
+            "Book Appointment"
+          )}
+        </button>
+      </div>
+    </form>
+  );
+};
 
 export default AppointmentForm;

@@ -1,24 +1,80 @@
-import React from 'react'
-import AppointmentForm from '../components/AppointmentForm';
+import { useEffect, useState } from "react";
+import { useAxios } from "../hooks/use-axios";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import DoctorDetails from "../components/DoctorDetails";
+import AppointmentForm from "../components/AppointmentForm";
+import { ClipLoader } from "react-spinners";
 
 const AppointmentPage = () => {
-    let btnStyles = 'bg-indigo-500 px-5 py-2 rounded-md text-white hover:bg-indigo-700 transition-all duration-[.3s] shadow-lg';
+  const navigate = useNavigate();
+  const { fetchData, loading } = useAxios();
+  const [searchParams] = useSearchParams();
 
+  const id = searchParams.get("id");
+  const specialist = searchParams.get("specialist");
+
+  const [doctor, setDoctor] = useState({});
+
+  const getDoctor = async () => {
+    const { obj, error } = await fetchData(`/users/doctors/getDoctor/${id}`);
+    if (error) console.log(error);
+    else {
+      setDoctor(obj?.data);
+    }
+  };
+  useEffect(() => {
+    if (!id) navigate("/search", { replace: true });
+    else {
+      getDoctor();
+    }
+  }, [id]);
+
+  if (loading) {
     return (
-        <div className='px-12'>
-            <img className='w-[30vw] absolute left-[10vw] top-24' src="./bg-style.svg" alt="style-img" />
+      <div className="h-scr grid place-items-center">
+        <ClipLoader size={"2rem"} color="black" />
+      </div>
+    );
+  }
+  return (
+    <div className="w-full py-6">
+      <h2 className="text-3xl font-semibold text-indigo-900 text-center">
+        Book An Appointment
+      </h2>
+      <div className="border border-gray-300 shadow-md rounded-lg my-4">
+        {/* Display doctor details */}
+        <DoctorDetails
+          doctor={doctor}
+          specialist={specialist}
+          showAppointmentButon={false}
+        />
+      </div>
+      <div className="space-y-6 p-4">
+        <h3 className="text-xl text-indigo-800 font-semibold">
+          Fill Up Your Details
+        </h3>
+        <div className="flex justify-between relative">
+          <div>
+            <AppointmentForm doctorId={doctor?._id} />
+          </div>
 
-            <div className='flex flex-col items-center gap-24 border-2 border-dashed border-gray-400 py-24 px-10 w-[70vw] relative top-5 mb-14'>
-                <h2 className='font-semibold text-4xl w-full text-left'>Select your preferred Mode:</h2>
-                <div className='flex gap-10 relative left-24'>
-                    <button className={btnStyles}>Online Mode <br /> video call {">"}</button>
-                    <button className={btnStyles + " relative bottom-7"}>Offline Mode <br /> In person {">"}</button>
-                </div>
-            </div>
-
-            <AppointmentForm />
+          <div className="hidden sm:block">
+            <img
+              width={230}
+              className="drop-shadow-xl mr-5"
+              src="./doctor_appointment.png"
+              alt="doctor-apt"
+            />
+            <img
+              className="rotate-90 absolute top-0 right-0 -z-10 w-[30vw]"
+              src="./bg-style.svg"
+              alt="styles"
+            />
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default AppointmentPage
+export default AppointmentPage;
