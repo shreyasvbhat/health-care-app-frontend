@@ -15,7 +15,7 @@ const AuthenticatedRoute = () => {
 
   if (isLoggedIn && isAuthenticated) {
     return (
-      <main className="grid grid-cols-12 space-y-4 h-screen">
+      <main className="grid grid-cols-12 space-y-4 overflow-y-auto">
         <nav className="col-span-12 md:col-span-3 border-r border-r-gray-300 py-2">
           <DashboardNavbar />
         </nav>
